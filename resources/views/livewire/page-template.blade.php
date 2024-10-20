@@ -29,7 +29,7 @@
     </div>
     <dialog id="modal_main" class="modal bg-black">
         <div class="modal-box max-w-full bg-black">
-            <img src="{{ $page->getFirstMediaUrl('image') }}" class="h-full w-full mx-auto cursor-pointer"
+            <img src="{{ $page->getFirstMediaUrl('image', 'web-image') }}" class="h-full w-full mx-auto cursor-pointer"
                 alt="{{ $page->name }} main image">
             <div class="modal-action">
                 <form method="dialog">

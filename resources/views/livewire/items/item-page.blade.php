@@ -12,8 +12,8 @@
 
     <dialog id="modal_main" class="modal bg-black">
         <div class="modal-box max-w-full bg-black">
-            <img src="{{ $item->getFirstMediaUrl('main-image') }}" class="h-full w-full mx-auto cursor-pointer"
-                alt="{{ $item->name }} main image">
+            <img src="{{ $item->getFirstMediaUrl('main-image', 'web-image') }}"
+                class="h-full w-full mx-auto cursor-pointer" alt="{{ $item->name }} main image">
             <div class="modal-action">
                 <form method="dialog">
                     <!-- if there is a button in form, it will close the modal -->
@@ -26,7 +26,7 @@
 
         <div class="columns-3 my-6 gap-0">
             @foreach ($item->getMedia('image-gallery') as $media)
-                <img class="w-full cursor-pointer" src="{{ $media->getUrl() }}"
+                <img class="w-full cursor-pointer" src="{{ $media->getUrl('web-image') }}"
                     alt="{{ $item->name }} image {{ $loop->index }}" onclick="modal_{{ $media->id }}.showModal()">
                 <dialog id="modal_{{ $media->id }}" class="modal bg-black">
                     <div class="modal-box max-w-full bg-black">
