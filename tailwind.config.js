@@ -20,6 +20,13 @@ export default {
                 sans: ['Roboto', ...defaultTheme.fontFamily.sans],
                 mono: ['Courier', ...defaultTheme.fontFamily.mono],
             },
+            typography: {
+                DEFAULT: {
+                    css: {
+                        color: 'ghostwhite',
+                    },
+                },
+            },
         },
     },
 
