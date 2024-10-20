@@ -1,7 +1,7 @@
 <div class="flex flex-col fade-in">
     <h1 class="font-bold text-5xl my-12 text-neutral-50 ms-6">{{ $item->name }}</h1>
     <div class="grid grid-cols-1 md:grid-cols-2 items-center">
-        <img src="{{ $item->getFirstMediaUrl('main-image', 'web-images') }}" class="h-auto w-auto mx-auto cursor-pointer"
+        <img src="{{ $item->getFirstMediaUrl('main-image', 'web-image') }}" class="h-auto w-auto mx-auto cursor-pointer"
             alt="{{ $item->name }} main image" onclick="modal_main.showModal()">
         <div class="text-neutral-50 p-4 prose prose-headings:text-neutral-50">
             <div class="md:mx-6 font-mono" x-data="{ inView: false }" x-intersect="inView = true"
