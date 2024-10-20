@@ -4,8 +4,8 @@ use App\Livewire\Items\ItemPage;
 use App\Livewire\PageTemplate;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', PageTemplate::class)->name('home');
-Route::get('/{slug}', ItemPage::class)->name('item.show');
+Route::get('/', PageTemplate::class)->name('front.home');
+Route::get('/portfolio/{slug}', ItemPage::class)->name('front.item');
 
 Route::get('dashboard', function () {
     return redirect()->to('/admin');

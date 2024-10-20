@@ -17,6 +17,9 @@ return new class extends Migration
             $table->string('name');
             $table->string('slug');
             $table->longText('content');
+            $table->string('site_name');
+            $table->string('site_tagline');
+            $table->longText('site_socials');
         });
     }
 

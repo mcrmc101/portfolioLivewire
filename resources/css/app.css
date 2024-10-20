@@ -1,9 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@tailwind variants;
 
 .mono-font {
     font-family: 'Cousine', monospace;
+}
+
+.text-shadow-dark {
+    text-shadow: 1px 1px 2px black;
+}
+
+.text-shadow-light {
+    text-shadow: 1px 1px 2px black;
 }
 
 .flicker-in-1 {

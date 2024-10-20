@@ -6,6 +6,8 @@ use App\Filament\Resources\PageResource\Pages;
 use App\Filament\Resources\PageResource\RelationManagers;
 use App\Models\Page;
 use Filament\Forms;
+use Filament\Forms\Components\Fieldset;
+use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -16,6 +18,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Notifications\Actions\Action;
 use Filament\Notifications\Notification;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Set;
 use Filament\Tables\Columns\TextColumn;
 use Illuminate\Support\Str;
@@ -24,26 +27,40 @@ class PageResource extends Resource
 {
     protected static ?string $model = Page::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-document-text';
+
+
 
     protected function beforeCreate(): void
     {
-
         if (Page::all()->count() > 1) {
+            $this->halt();
             Notification::make()
                 ->warning()
                 ->title('Only one page can be created.')
-
                 ->send();
-
-            $this->halt();
         }
     }
+
+
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
+                Section::make('Site Details')
+                    ->schema([
+                        Forms\Components\TextInput::make('site_name')
+                            ->required(),
+                        Forms\Components\TextInput::make('site_tagline')
+                            ->required(),
+                        SpatieMediaLibraryFileUpload::make('site_logo')->label('Site Logo')
+                            ->collection('site_logo'),
+                        Repeater::make('site_socials')->schema([
+                            TextInput::make('name')->required(),
+                            TextInput::make('link')->required(),
+                        ])->columnSpanFull()
+                    ])->columns(3),
                 Section::make('Main Page')
                     ->schema([
                         Forms\Components\TextInput::make('name')

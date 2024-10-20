@@ -1,7 +1,7 @@
 <div>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
         @foreach ($items as $item)
-            <a href="{{ route('item.show', $item->slug) }}">
+            <a href="{{ route('front.item', $item->slug) }}">
                 <div class="card rounded-none" x-data="{ inView: false }" x-intersect="inView = true"
                     :class="{ 'fade-in': inView }">
                     <figure>

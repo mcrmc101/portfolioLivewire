@@ -16,11 +16,20 @@ class Page extends Model implements HasMedia
     protected $fillable = [
         'name',
         'slug',
-        'content'
+        'content',
+        'site_name',
+        'site_tagline',
+        'site_socials'
+    ];
+
+    protected $casts = [
+        'site_socials' => 'array',
     ];
 
     public function registerMediaCollections(): void
     {
+        $this->addMediaCollection('site_logo');
+        $this->addMediaCollection('social_icons');
         $this->addMediaCollection('image');
         $this->addMediaCollection('downloads');
     }

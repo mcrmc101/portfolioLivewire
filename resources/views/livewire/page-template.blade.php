@@ -1,19 +1,47 @@
 <div>
-    <div class="hero min-h-screen" id="background-container"
-        style="background-image: url({{ $page->getFirstMediaUrl('image', 'web-image') }});">
+    <div class="grid grid-cols-1 items-center">
+        <div class="hero min-h-screen" id="background-container"
+            style="background-image: url({{ $page->getFirstMediaUrl('image', 'web-image') }});">
 
-        <div class=" flex items-start max-w-10/12 ">
-            <div class="ml-6 max-sm:mt-24 w-3/4" id="overlay-text" x-data="{ inView: false }" x-intersect="inView = true"
+            <div class=" flex items-start max-w-10/12 ">
+                <div class="ml-6 max-sm:mt-24 w-3/4" id="overlay-text" x-data="{ inView: false }" x-intersect="inView = true"
+                    :class="{ 'flicker-in-1': inView }">
+                    <h1 class="mb-5 text-xl md:text-5xl font-bold">{{ $page->name }}</h1>
+                    <div class="mb-5 font-mono prose prose-headings:text-neutral-50 prose-p:text-neutral-50 max-w-none">
+                        {!! $page->content !!}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        {{--
+        <div class=" flex items-start p-4 ">
+            <div class="w-11/12 mx-auto" id="overlay-text" x-data="{ inView: false }" x-intersect="inView = true"
                 :class="{ 'flicker-in-1': inView }">
-                <h1 class="mb-5 text-xl md:text-5xl font-bold">{{ $page->name }}</h1>
-                <div class="mb-5">
+                <h1 class="mb-5 text-3xl md:text-5xl font-bold">{{ $page->name }}</h1>
+                <div class="mb-5 font-mono prose prose-headings:text-neutral-50 prose-p:text-neutral-50 max-w-none">
                     {!! $page->content !!}
                 </div>
 
             </div>
         </div>
+        --}}
     </div>
+    <dialog id="modal_main" class="modal bg-black">
+        <div class="modal-box max-w-full bg-black">
+            <img src="{{ $page->getFirstMediaUrl('image') }}" class="h-full w-full mx-auto cursor-pointer"
+                alt="{{ $page->name }} main image">
+            <div class="modal-action">
+                <form method="dialog">
+                    <!-- if there is a button in form, it will close the modal -->
+                    <button class="btn">Close</button>
+                </form>
+            </div>
+        </div>
+    </dialog>
     @livewire('items.item-masonry')
+    <div class="divider divider-neutral w-3/4 mx-auto"></div>
+    @livewire('contact-form')
 
 
 
@@ -58,8 +86,10 @@
             // Adjust text color based on brightness
             if (avgBrightness > 128) {
                 overlayText.style.color = 'black'; // Dark text for light background
+                overlayText.classList.add('text-shadow-light');
             } else {
                 overlayText.style.color = 'white'; // Light text for dark background
+                overlayText.classList.add('text-shadow-dark');
             }
         };
     }
