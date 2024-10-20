@@ -29,7 +29,7 @@ class PageResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
 
-
+    /*
 
     protected function beforeCreate(): void
     {
@@ -41,6 +41,7 @@ class PageResource extends Resource
                 ->send();
         }
     }
+        */
 
 
 
