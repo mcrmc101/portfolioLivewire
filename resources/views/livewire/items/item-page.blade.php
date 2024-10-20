@@ -30,7 +30,7 @@
                     alt="{{ $item->name }} image {{ $loop->index }}" onclick="modal_{{ $media->id }}.showModal()">
                 <dialog id="modal_{{ $media->id }}" class="modal bg-black">
                     <div class="modal-box max-w-full bg-black">
-                        <img src="{{ $media->getUrl() }}" class="h-full w-full mx-auto cursor-pointer"
+                        <img src="{{ $media->getUrl('web-image') }}" class="h-full w-full mx-auto cursor-pointer"
                             alt="{{ $item->name }} image {{ $loop->index }}">
                         <div class="modal-action">
                             <form method="dialog">
