@@ -7,7 +7,7 @@
                 <div class="ml-6 max-sm:mt-24 w-3/4" id="overlay-text" x-data="{ inView: false }" x-intersect="inView = true"
                     :class="{ 'flicker-in-1': inView }">
                     <h1 class="mb-5 text-xl md:text-5xl font-bold">{{ $page->name }}</h1>
-                    <div class="mb-5 font-mono prose prose-headings:text-neutral-50 prose-p:text-neutral-50 max-w-none">
+                    <div class="mb-5 font-mono prose max-w-none">
                         {!! $page->content !!}
                     </div>
 
@@ -87,9 +87,13 @@
             if (avgBrightness > 128) {
                 overlayText.style.color = 'black'; // Dark text for light background
                 overlayText.classList.add('text-shadow-light');
+                overlayText.classList.add('prose-headings:text-neutral-900');
+                overlayText.classList.add('prose-p:text-neutral-900');
             } else {
                 overlayText.style.color = 'white'; // Light text for dark background
                 overlayText.classList.add('text-shadow-dark');
+                overlayText.classList.add('prose-headings:text-neutral-50');
+                overlayText.classList.add('prose-p:text-neutral-50');
             }
         };
     }

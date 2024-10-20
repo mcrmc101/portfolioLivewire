@@ -38,6 +38,7 @@ class ItemResource extends Resource
                 SpatieMediaLibraryFileUpload::make('image-gallery')->label('Image Gallery')
                     ->collection('image-gallery')->multiple(),
                 Forms\Components\RichEditor::make('description')
+                    ->toolbarButtons(config('app.toolbarButtons'))
                     ->columnSpanFull(),
             ]);
     }

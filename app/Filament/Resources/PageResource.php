@@ -72,9 +72,7 @@ class PageResource extends Resource
                         SpatieMediaLibraryFileUpload::make('image')->label('Page Main Image')
                             ->collection('image'),
                         Forms\Components\RichEditor::make('content')->label('Text Overlay Content')
-                            ->disableToolbarButtons([
-                                'attachFiles'
-                            ])
+                            ->toolbarButtons(config('app.toolbarButtons'))
                             ->required()
                             ->columnSpanFull(),
                     ])

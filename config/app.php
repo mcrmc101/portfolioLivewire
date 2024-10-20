@@ -129,4 +129,17 @@ return [
 
     ],
 
+    'toolbarButtons' => [
+        'blockquote',
+        'bold',
+        'h2',
+        'h3',
+        'italic',
+        'link',
+        'redo',
+        'strike',
+        'underline',
+        'undo',
+    ],
+
 ];
