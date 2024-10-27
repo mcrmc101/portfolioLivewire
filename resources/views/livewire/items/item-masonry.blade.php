@@ -5,8 +5,10 @@
                 <div class="card rounded-none" x-data="{ inView: false }" x-intersect="inView = true"
                     :class="{ 'fade-in': inView }">
                     <figure>
-                        <img src="{{ $item->getFirstMediaUrl('main-image', 'web-image') }}"
-                            alt="{{ $item->name }} main image" />
+                        @livewire('items.item-image', [
+                            'mediaVar' => $item->getMedia('main-image')[0],
+                            'isMasonry' => true,
+                        ])
                     </figure>
                     <div class="card-body text-white" x-data="{ inView: false }" x-intersect="inView = true"
                         :class="{ 'flicker-in-1': inView }">

@@ -27,18 +27,6 @@
         </div>
         --}}
     </div>
-    <dialog id="modal_main" class="modal bg-black">
-        <div class="modal-box max-w-full bg-black">
-            <img src="{{ $page->getFirstMediaUrl('image', 'web-image') }}" class="h-full w-full mx-auto cursor-pointer"
-                alt="{{ $page->name }} main image">
-            <div class="modal-action">
-                <form method="dialog">
-                    <!-- if there is a button in form, it will close the modal -->
-                    <button class="btn">Close</button>
-                </form>
-            </div>
-        </div>
-    </dialog>
     @livewire('items.item-masonry')
     <div class="divider divider-neutral w-3/4 mx-auto"></div>
     @livewire('contact-form')
