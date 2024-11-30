@@ -142,4 +142,6 @@ return [
         'undo',
     ],
 
+    'allowed-emails' => explode(',', env('ALLOWED_EMAILS')),
+
 ];

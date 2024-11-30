@@ -10,7 +10,7 @@
     @else
         <title>{{ config('app.name', 'Laravel') }}</title>
     @endif
-
+    @stack('head')
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

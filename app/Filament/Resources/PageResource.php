@@ -22,6 +22,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Set;
 use Filament\Tables\Columns\TextColumn;
 use Illuminate\Support\Str;
+use RalphJSmit\Filament\SEO\SEO;
 
 class PageResource extends Resource
 {
@@ -50,6 +51,7 @@ class PageResource extends Resource
         return $form
             ->schema([
                 Section::make('Site Details')
+                    ->description('The info for the website, Name, Logo etc')
                     ->schema([
                         Forms\Components\TextInput::make('site_name')
                             ->required(),
@@ -57,10 +59,12 @@ class PageResource extends Resource
                             ->required(),
                         SpatieMediaLibraryFileUpload::make('site_logo')->label('Site Logo')
                             ->collection('site_logo'),
-                        Repeater::make('site_socials')->schema([
-                            TextInput::make('name')->required(),
-                            TextInput::make('link')->required(),
-                        ])->columnSpanFull()
+                        Repeater::make('site_socials')
+                            ->helperText('Add your Social links here:')
+                            ->schema([
+                                TextInput::make('name')->required(),
+                                TextInput::make('link')->required(),
+                            ])->columnSpanFull()
                     ])->columns(3),
                 Section::make('Main Page')
                     ->schema([
@@ -75,6 +79,12 @@ class PageResource extends Resource
                             ->toolbarButtons(config('app.toolbarButtons'))
                             ->required()
                             ->columnSpanFull(),
+                    ]),
+
+                Section::make('SEO')
+                    ->description('Seo for the Page.  Very important for google!')
+                    ->schema([
+                        SEO::make(),
                     ])
             ]);
     }

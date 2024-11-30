@@ -1,4 +1,7 @@
 <div>
+    @push('head')
+        {!! seo()->for($page) !!}
+    @endpush
     <div class="grid grid-cols-1 items-center">
         <div class="hero min-h-screen" id="background-container"
             style="background-image: url({{ $page->getFirstMediaUrl('image', 'web-image') }});">

@@ -7,6 +7,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', PageTemplate::class)->name('front.home');
 Route::get('/portfolio/{slug}', ItemPage::class)->name('front.item');
 
+Route::get('under-construction', function () {
+    return view('under-construction');
+});
+
 Route::get('dashboard', function () {
     return redirect()->to('/admin');
 })

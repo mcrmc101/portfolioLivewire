@@ -6,6 +6,7 @@ use App\Filament\Resources\ItemResource\Pages;
 use App\Filament\Resources\ItemResource\RelationManagers;
 use App\Models\Item;
 use Filament\Forms;
+use Filament\Forms\Components\Section;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -15,7 +16,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Forms\Set;
 use Illuminate\Support\Str;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
-
+use RalphJSmit\Filament\SEO\SEO;
 
 class ItemResource extends Resource
 {
@@ -27,19 +28,30 @@ class ItemResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')
-                    ->required()
-                    ->maxLength(255)->live()
-                    ->afterStateUpdated(fn(Set $set, ?string $state) => $set('slug', Str::slug($state))),
-                Forms\Components\Hidden::make('slug'),
-                Forms\Components\TextInput::make('link'),
-                SpatieMediaLibraryFileUpload::make('image')->label('Main Image')
-                    ->collection('main-image'),
-                SpatieMediaLibraryFileUpload::make('image-gallery')->label('Image Gallery')
-                    ->collection('image-gallery')->multiple(),
-                Forms\Components\RichEditor::make('description')
-                    ->toolbarButtons(config('app.toolbarButtons'))
-                    ->columnSpanFull(),
+                Section::make('Item Info')
+                    ->schema([
+                        Forms\Components\TextInput::make('name')
+                            ->required()
+                            ->maxLength(255)->live()
+                            ->afterStateUpdated(fn(Set $set, ?string $state) => $set('slug', Str::slug($state))),
+                        Forms\Components\Hidden::make('slug'),
+                        Forms\Components\RichEditor::make('description')
+                            ->toolbarButtons(config('app.toolbarButtons'))
+                            ->columnSpanFull(),
+                        // Forms\Components\TextInput::make('link'),
+                    ]),
+                Section::make('Item Media')
+                    ->schema([
+                        SpatieMediaLibraryFileUpload::make('image')->label('Main Image')
+                            ->collection('main-image'),
+                        SpatieMediaLibraryFileUpload::make('image-gallery')->label('Image Gallery')
+                            ->collection('image-gallery')->multiple(),
+                    ]),
+                Section::make('SEO')
+                    ->description('Seo for the Page.  Very important for google!')
+                    ->schema([
+                        SEO::make(),
+                    ])
             ]);
     }
 

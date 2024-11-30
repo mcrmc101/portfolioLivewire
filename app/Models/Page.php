@@ -8,10 +8,12 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Image\Enums\Fit;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Spatie\MediaLibrary\Conversions\Manipulations;
+use RalphJSmit\Laravel\SEO\Support\HasSEO;
 
 class Page extends Model implements HasMedia
 {
     use InteractsWithMedia;
+    use HasSEO;
 
     protected $fillable = [
         'name',

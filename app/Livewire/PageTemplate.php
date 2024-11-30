@@ -13,6 +13,9 @@ class PageTemplate extends Component
     public function mount()
     {
         $this->page = Page::first();
+        if (!$this->page) {
+            return $this->redirectRoute('construction');
+        }
     }
 
     #[Layout('layouts.guest')]
