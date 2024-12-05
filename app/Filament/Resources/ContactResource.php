@@ -32,6 +32,7 @@ class ContactResource extends Resource
                     ->tel(),
                 Forms\Components\Textarea::make('content')
                     ->required()
+->autosize()
                     ->columnSpanFull(),
                 Forms\Components\Toggle::make('message_read')
                     ->required(),
